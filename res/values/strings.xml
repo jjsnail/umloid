@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UMLoid</string>
+    <string name="menu_create_diagram">Create diagram</string>
+    <string name="menu_load_diagram">Load diagram</string>
+    <string name="menu_create_class">Create class</string>
+    <string name="menu_delete_class">Delete class</string>
+    <string name="menu_class_properties">Class properties</string>
+    <string name="menu_create_association">Create association</string>
+    <string name="menu_association_properties">Association properties</string>       
+</resources>

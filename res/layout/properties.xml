@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:orientation="vertical"
+			  android:layout_width="fill_parent"
+			  android:layout_height="fill_parent">
+
+	<TextView android:layout_width="wrap_content"
+			  android:layout_height="wrap_content"
+			  android:text="Diagram name"/>
+
+	<EditText android:layout_width="fill_parent"
+			  android:layout_height="wrap_content"
+			  android:id="@+id/diagramname"/>
+
+	<Button   android:layout_width="fill_parent"
+			  android:layout_height="wrap_content"
+			  android:text="attributes"
+			  android:id="@+id/attributes_btn"/>			  			  
+
+	<Button   android:layout_width="fill_parent"
+			  android:layout_height="wrap_content"
+			  android:text="methods"
+			  android:id="@+id/methods_btn"/>			  			  
+
+	<Button   android:layout_width="wrap_content"
+			  android:layout_height="wrap_content"
+			  android:text="save"
+			  android:id="@+id/save_button"/>			  			  
+			  
+			  
+</LinearLayout>			  
