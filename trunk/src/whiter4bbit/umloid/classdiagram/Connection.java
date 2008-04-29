@@ -2,6 +2,12 @@ package whiter4bbit.umloid.classdiagram;
 
 import java.io.Serializable;
 
+import whiter4bbit.umloid.UMLoidHelper;
+
+import android.util.Log;
+
+//TODO: remove funckin' constants from this class and put it into static final members of one other
+//TODO: do prev todo for each other class
 public class Connection implements Serializable{
 
 	private String role1;
@@ -16,14 +22,49 @@ public class Connection implements Serializable{
 	
 	private int multiplier2;
 	
+	private ClassDiagram classDiagram;
+	
 	private String name;
 	
-	private Integer id;
+	private Integer id;	
 	
-	public Connection(String name, Class class1, Class class2) {
+	public Connection(String name, Class class1, Class class2, ClassDiagram classDiagram) {
 		this.name = name;
+		this.classDiagram = classDiagram;
 		this.class1 = class1;
-		this.class2 = class2;	
+		this.class2 = class2;			
+	}
+	
+	public Integer getX1() {
+		return classDiagram.getClass(class1.getId()).getX()+50;
+	}
+	
+	public Integer getX2() {
+		return classDiagram.getClass(class2.getId()).getX()+50;
+	}
+	
+	public Integer getY1() {
+		return classDiagram.getClass(class1.getId()).getY()+25;
+	}
+	
+	public Integer getY2() {
+		return classDiagram.getClass(class2.getId()).getY()+25;
+	}
+	
+	public void setX1(Integer x1) {
+		this.x1 = x1;
+	}
+	
+	public void setX2(Integer x2) {
+		this.x2 = x2;
+	}
+	
+	public void setY1(Integer y1) {
+		this.y1 = y1;
+	}
+	
+	public void setY2(Integer y2) {
+		this.y2 = y2;
 	}
 	
 	public void setName(String name) {
@@ -101,17 +142,20 @@ public class Connection implements Serializable{
 	}
 	
 	public boolean isPointOn(int x, int y){
+		boolean result = isPointOn(x, y, getX1(), getY1(), getX2(), getY2());		
+		return result;
+	}
+	
+	public boolean isPointOn(int x, int y, int x1, int y1, int x2, int y2){
 		double epsilon = 3;
-		int x1 = getClass1().getX()+50, x2 = getClass2().getX()+50;
-		int y1 = getClass1().getY()+25, y2 = getClass2().getY()+25;
-		if(x1==x2){
+		if(Math.abs(x1-x2)<epsilon){
 			return (y>=y1 && y<=y2) || (y>=y2 && y<=y1);
 		}
-		if(y1==y2){
+		if(Math.abs(y1-y2)<epsilon){			
 			return (x>=x1 && x<=x2) || (x>=x2 && x<=x1);
 		}
-		double k = (y1-y2)/(x1-x2);
-		double b = y2 - k*x2;		
-		return (k*x+b-y)<epsilon;
+		
+		double difference = (((double)x-(double)x1)/((double)x2-(double)x1))-(((double)y-(double)y1)/((double)y2-(double)y1));		
+		return Math.abs(difference)<=0.1;
 	}
 }

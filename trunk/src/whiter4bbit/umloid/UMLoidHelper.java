@@ -1,5 +1,9 @@
 package whiter4bbit.umloid;
 
+import whiter4bbit.umloid.classdiagram.Class;
+import whiter4bbit.umloid.classdiagram.ClassDiagram;
+import android.os.Bundle;
+
 
 public class UMLoidHelper {
 	
@@ -23,14 +27,14 @@ public class UMLoidHelper {
 	
 	public static final int DIAGRAM_STATE_LOAD = 1;	
 	
-//	public static Class getClassByCoordinate(int x, int y, ClassDiagram classDiagram){
-//		for(Class cClass : classDiagram.getClasses()){
-//			if( x>=cClass.getX() && y>=cClass.getY() 
-//						&& x<=cClass.getX()+ClassShape.CLASS_RECTANGLE_WIDTH
-//						&& y<=cClass.getY()+ClassShape.CLASS_RECTANGLE_HEIGHT){
-//				return cClass;				
-//			}
-//		}
-//		return null;
-//	}
+	public static Class getClassFromBundle(Bundle bundle){
+		Class currentClass = null;
+		if(bundle!=null){
+			Integer classId = bundle.getInt(CLASS_ID_KEY);
+			ClassDiagram classDiagram = (ClassDiagram)UMLoidStorage.getDiagram();
+			currentClass = classDiagram.getClass(classId);
+		}
+		return currentClass;
+	}
+
 }
