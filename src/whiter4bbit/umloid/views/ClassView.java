@@ -20,6 +20,10 @@ public class ClassView extends View{
 		return currentClass;
 	}
 	
+	public void setCurrentClass(Class currentClass) {
+		this.currentClass = currentClass;
+	}
+	
 	public ClassView(Context context, Class currentClass, ClassCallBackListener classCallBackListener) {
 		super(context);
 		this.currentClass = currentClass;

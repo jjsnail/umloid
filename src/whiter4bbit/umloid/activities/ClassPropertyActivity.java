@@ -23,6 +23,8 @@ public class ClassPropertyActivity extends Activity{
 	
 	private Button saveButton;
 	
+	private Button methodsButton;
+	
 	@Override
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
@@ -30,6 +32,8 @@ public class ClassPropertyActivity extends Activity{
 		nameEdit = (EditText) findViewById(R.id.diagramname);
 		saveButton = (Button) findViewById(R.id.save_button);
 		saveButton.setOnClickListener(onSaveListener);
+		methodsButton = (Button) findViewById(R.id.methods_btn);
+		methodsButton.setOnClickListener(onMethodsListener);
 		Bundle bundle = getIntent().getExtras();
 		if( bundle!=null ){
 			Integer classId = bundle.getInt(UMLoidHelper.CLASS_ID_KEY);
@@ -39,6 +43,13 @@ public class ClassPropertyActivity extends Activity{
 			Log.i(UMLoidHelper.UMLOID_TAG, "Loaded properties activity for class "+currentClass.getName());			
 		}
 	}
+	
+	private OnClickListener onMethodsListener = new OnClickListener(){
+		public void onClick(View arg0) {
+			
+		};
+	};
+	
 	
 	private OnClickListener onSaveListener = new OnClickListener(){
 		public void onClick(View arg0) {

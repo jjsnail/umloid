@@ -30,7 +30,7 @@ public class ClassDiagramUIManager extends DiagramUIManager implements ClassCall
 	
 	private final int MENU_CLASS_PROPERTIES = Menu.FIRST+2;
 	
-	private final int MENU_CREATE_ASSOCIATION = Menu.FIRST+3;
+	private final int MENU_CREATE_ASSOCIATION = Menu.FIRST+3;	
 	
 	private final int PROPERTIES = 1;
 	
@@ -62,8 +62,12 @@ public class ClassDiagramUIManager extends DiagramUIManager implements ClassCall
 		case MotionEvent.ACTION_MOVE:
 			Log.i(UMLoidHelper.UMLOID_TAG, "Diagram View: Action move ("+state+")");
 			if( state == State.ST_NONE && selectedClassView!=null ){
-				selectedClassView.getCurrentClass().setPos(x-50, y-25);
+				Class currentClass = selectedClassView.getCurrentClass();
+				currentClass.setPos(x-50, y-25);
+				selectedClassView.setCurrentClass(currentClass);
 				selectedClassView.setLayoutParams(new AbsoluteLayout.LayoutParams(100,50, x-50,y-25));
+				classDiagram.updateClass(currentClass);				
+				Log.i(UMLoidHelper.UMLOID_TAG, "new pos for class "+currentClass.getName()+" x:"+currentClass.getX()+" Y:"+currentClass.getY());
 				repaint();
 			}			
 			break;
@@ -71,9 +75,12 @@ public class ClassDiagramUIManager extends DiagramUIManager implements ClassCall
 			Log.i(UMLoidHelper.UMLOID_TAG, "Diagram View: Action down ("+state+")");
 			if( state == State.ST_CREATE_CLASS ){
 				createClass(x, y);
-				state = State.ST_NONE;			
+				state = State.ST_NONE;				
 			}
 			if( state == State.ST_NONE ){
+				//TODO: don't toch				
+				//TODO: think in near time about it....
+				//TODO: don't touch before thinking!!!!				
 				for(Connection connection:classDiagram.getConnections()){
 					if(connection.isPointOn(x, y)){
 						onConnectionSelect(connection);
@@ -142,8 +149,10 @@ public class ClassDiagramUIManager extends DiagramUIManager implements ClassCall
 		}
 		if( state == State.ST_DELETE_CLASS ){
 			getView().removeView(classView);
+			classDiagram.removeConnectionsWithClass(classView.getCurrentClass());			
 			classDiagram.removeClass(classView.getCurrentClass());
 			changeState(State.ST_NONE);
+			repaint();
 		}
 		if( state == State.ST_CLASS_PROPERTIES){
 			Intent i = new Intent(getView().getContext(), ClassPropertyActivity.class);
@@ -151,11 +160,11 @@ public class ClassDiagramUIManager extends DiagramUIManager implements ClassCall
 			changeState(State.ST_NONE);
 			getActivity().startSubActivity(i, PROPERTIES);			
 		}
-		if( state == State.ST_CLASS_ASSOCIATION ){
+		if( state == State.ST_CLASS_ASSOCIATION ){			
 			if( selectedClass1 == null ){
 				selectedClass1 = classView.getCurrentClass();
 				selectedClass2 = null;
-				Connection connection = new Connection("connection"+classDiagram.getConnections().size(), selectedClass1, null);
+				Connection connection = new Connection("connection"+classDiagram.getConnections().size(), selectedClass1, null, classDiagram);
 				currentConnection = connection;
 				classDiagram.addConnection(connection);
 			} else  
@@ -184,14 +193,12 @@ public class ClassDiagramUIManager extends DiagramUIManager implements ClassCall
 				connectionPaint.setARGB(255, 255, 0, 0);
 			}
 			if( connection.getClass2() != null ){
-				int lastX = connection.getClass2().getX()+50;
-				int lastY = connection.getClass2().getY()+25;
-				canvas.drawLine(connection.getClass1().getX()+50, 
-								connection.getClass1().getY()+25, 
-								lastX, 
-								lastY,
-								connectionPaint);
-				Log.i(UMLoidHelper.UMLOID_TAG, "lastX:"+lastX+" lastY:"+lastY);
+				canvas.drawLine(connection.getX1(), 
+								connection.getY1(), 
+								connection.getX2(), 
+								connection.getY2(),
+								connectionPaint);			
+				classDiagram.updateConnection(connection);
 			}
 						
 		}

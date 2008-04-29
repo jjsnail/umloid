@@ -1,7 +1,9 @@
 package whiter4bbit.umloid.classdiagram;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  * @author whiter4bbit
@@ -41,6 +43,23 @@ public class ClassDiagram extends Diagram{
 	
 	public Collection<Connection> getConnections() {		
 		return connections.values();
+	}
+	
+	public void removeConnection(Connection connection){
+		connections.remove(connection.getId());
+	}
+	
+	public void removeConnectionsWithClass(Class removeableClass){
+		List<Integer> keys = new ArrayList<Integer>();
+		for(Connection connection: getConnections()){
+			if(connection.getClass1().getId() == removeableClass.getId()
+					|| connection.getClass2().getId() == removeableClass.getId()){				
+				keys.add(connection.getId());
+			}
+		}
+		for( Integer key : keys ){
+			removeConnection(connections.get(key));			
+		}
 	}
 	
 	public void updateClass(Class updClass){
