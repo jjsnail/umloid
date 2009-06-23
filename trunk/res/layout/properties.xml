@@ -7,12 +7,29 @@
 
 	<TextView android:layout_width="wrap_content"
 			  android:layout_height="wrap_content"
-			  android:text="Diagram name"/>
+			  android:text="Class name"/>			  				  			
 
 	<EditText android:layout_width="fill_parent"
 			  android:layout_height="wrap_content"
 			  android:id="@+id/diagramname"/>
+			  
+	<TextView android:layout_width="wrap_content"
+			  android:layout_height="wrap_content"
+			  android:text="Class type"/>			  				  			
 
+	<Spinner  android:layout_width="fill_parent"
+			  android:layout_height="wrap_content"
+			  android:id="@+id/class_type_spinner"/>			 
+				  
+	<TextView android:layout_width="wrap_content"
+			  android:layout_height="wrap_content"
+			  android:text="Visibility scope"/>			  				  			
+
+	<Spinner  android:layout_width="fill_parent"
+			  android:layout_height="wrap_content"
+			  android:id="@+id/class_visibility_scope_spinner"/>				  
+				  				  	
+			  
 	<Button   android:layout_width="fill_parent"
 			  android:layout_height="wrap_content"
 			  android:text="attributes"
@@ -23,10 +40,23 @@
 			  android:text="methods"
 			  android:id="@+id/methods_btn"/>			  			  
 
-	<Button   android:layout_width="wrap_content"
-			  android:layout_height="wrap_content"
-			  android:text="save"
-			  android:id="@+id/save_button"/>			  			  
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				  android:orientation="horizontal"
+				  android:layout_width="fill_parent"
+				  android:layout_height="wrap_content">
+
+
+		<Button   android:layout_width="wrap_content"
+				  android:layout_height="wrap_content"
+				  android:text="save"
+			  	  android:id="@+id/save_button"/>
+
+		<Button   android:layout_width="wrap_content"
+				  android:layout_height="wrap_content"
+				  android:text="cancel"
+			  	  android:id="@+id/cancel_button"/>
+
+	</LinearLayout>			  			  			  
 			  
 			  
 </LinearLayout>			  

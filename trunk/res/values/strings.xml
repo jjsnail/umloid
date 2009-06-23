@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">UMLoid</string>
+    
+    <!-- Global resources -->    
+    
+	<string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    
+	
+	<!-- UMLloid main activity menu -->    
     <string name="menu_create_diagram">Create diagram</string>
     <string name="menu_load_diagram">Load diagram</string>
     <string name="menu_create_class">Create class</string>
     <string name="menu_delete_class">Delete class</string>
     <string name="menu_class_properties">Class properties</string>
     <string name="menu_create_association">Create association</string>
-    <string name="menu_association_properties">Association properties</string>       
+    <string name="menu_association_properties">Association properties</string>
+    <string name="menu_connection_properties">Connection properties</string>
+    <string name="menu_create_connection">Connection</string>
+    <string name="menu_create_composition">Composition</string>
+    <string name="menu_create_aggregation">Aggregation</string>
+    <string name="menu_create_generalization">Generalization</string>
+    <string name="menu_create_dependency">Dependency</string>
+    <string name="menu_save_diagram">Save diagram</string>
+    
+    <!-- Methods list avtivity -->
+    
+    <string name="menu_create_method">Create method</string>
+    <string name="menu_delete_method">Delete method</string>
+    
+    <!-- Add method view -->    
+    <string name="view_add_method_method_name">Method name</string>   
+    <string name="view_add_method_method_type">Method type</string>
+    <string name="view_add_method_attributes_button">Method attributes</string>
+    
+    <!-- Attributes list activity  -->
+    <string name="menu_create_attribute">Create attribute</string>    
+    <string name="menu_delete_attribute">Deleta attribute</string>    
+       
+                          
 </resources>
