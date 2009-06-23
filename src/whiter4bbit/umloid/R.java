@@ -16,30 +16,99 @@ public final class R {
         public static final int white=0x7f020002;
     }
     public static final class id {
-        public static final int attributes_btn=0x7f050006;
-        public static final int create_diagram=0x7f050002;
-        public static final int diagram_name=0x7f050000;
-        public static final int diagram_type=0x7f050001;
-        public static final int diagramname=0x7f050005;
-        public static final int methods=0x7f050003;
-        public static final int methods_btn=0x7f050007;
-        public static final int save_button=0x7f050004;
+        public static final int abstract_cb=0x7f05000a;
+        public static final int add_attribute_attribute_cancel=0x7f050004;
+        public static final int add_attribute_attribute_name=0x7f050000;
+        public static final int add_attribute_attribute_save=0x7f050003;
+        public static final int add_attribute_attribute_type=0x7f050001;
+        public static final int add_attribute_visibility_scope=0x7f050002;
+        public static final int add_parameter_parameter_cancel=0x7f050010;
+        public static final int add_parameter_parameter_name=0x7f05000d;
+        public static final int add_parameter_parameter_save=0x7f05000f;
+        public static final int add_parameter_parameter_type=0x7f05000e;
+        public static final int attributes_btn=0x7f05002b;
+        public static final int attributes_button=0x7f050007;
+        public static final int attributes_list=0x7f050012;
+        public static final int cancel_button=0x7f05000c;
+        public static final int class1_multiplicity=0x7f05001b;
+        public static final int class1_role=0x7f050017;
+        public static final int class2_multiplicity=0x7f05001d;
+        public static final int class2_role=0x7f050019;
+        public static final int class_attributes_back=0x7f050011;
+        public static final int class_methods_back=0x7f050024;
+        public static final int class_one_multiplicity_text=0x7f05001a;
+        public static final int class_one_role_text=0x7f050016;
+        public static final int class_two_multiplicity_text=0x7f05001c;
+        public static final int class_two_role_text=0x7f050018;
+        public static final int class_type_spinner=0x7f050029;
+        public static final int class_visibility_scope_spinner=0x7f05002a;
+        public static final int connection_cancel=0x7f05001f;
+        public static final int connection_name=0x7f050015;
+        public static final int connection_save=0x7f05001e;
+        public static final int connection_scroll=0x7f050013;
+        public static final int connection_type_spinner=0x7f050014;
+        public static final int create_diagram=0x7f050022;
+        public static final int diagram_name=0x7f050020;
+        public static final int diagram_type=0x7f050021;
+        public static final int diagramname=0x7f050028;
+        public static final int files_list=0x7f050023;
+        public static final int method_name=0x7f050005;
+        public static final int method_parameters_back=0x7f050026;
+        public static final int method_type=0x7f050006;
+        public static final int methods_btn=0x7f05002c;
+        public static final int methods_list=0x7f050025;
+        public static final int parameters_list=0x7f050027;
+        public static final int save_button=0x7f05000b;
+        public static final int static_cb=0x7f050009;
+        public static final int visibility_spinner=0x7f050008;
     }
     public static final class layout {
-        public static final int create=0x7f030000;
-        public static final int diagram=0x7f030001;
-        public static final int main=0x7f030002;
-        public static final int methods=0x7f030003;
-        public static final int properties=0x7f030004;
+        public static final int addattribute=0x7f030000;
+        public static final int addmethod=0x7f030001;
+        public static final int addparameter=0x7f030002;
+        public static final int attributes=0x7f030003;
+        public static final int connection=0x7f030004;
+        public static final int create=0x7f030005;
+        public static final int diagram=0x7f030006;
+        public static final int main=0x7f030007;
+        public static final int methods=0x7f030008;
+        public static final int parameters=0x7f030009;
+        public static final int properties=0x7f03000a;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
-        public static final int menu_association_properties=0x7f040007;
-        public static final int menu_class_properties=0x7f040005;
-        public static final int menu_create_association=0x7f040006;
-        public static final int menu_create_class=0x7f040003;
-        public static final int menu_create_diagram=0x7f040001;
-        public static final int menu_delete_class=0x7f040004;
-        public static final int menu_load_diagram=0x7f040002;
+        public static final int cancel_button=0x7f040002;
+        public static final int menu_association_properties=0x7f040009;
+        public static final int menu_class_properties=0x7f040007;
+        public static final int menu_connection_properties=0x7f04000a;
+        public static final int menu_create_aggregation=0x7f04000d;
+        public static final int menu_create_association=0x7f040008;
+        /**  Attributes list activity  
+         */
+        public static final int menu_create_attribute=0x7f040016;
+        public static final int menu_create_class=0x7f040005;
+        public static final int menu_create_composition=0x7f04000c;
+        public static final int menu_create_connection=0x7f04000b;
+        public static final int menu_create_dependency=0x7f04000f;
+        /**  UMLloid main activity menu 
+         */
+        public static final int menu_create_diagram=0x7f040003;
+        public static final int menu_create_generalization=0x7f04000e;
+        /**  Methods list avtivity 
+         */
+        public static final int menu_create_method=0x7f040011;
+        public static final int menu_delete_attribute=0x7f040017;
+        public static final int menu_delete_class=0x7f040006;
+        public static final int menu_delete_method=0x7f040012;
+        public static final int menu_load_diagram=0x7f040004;
+        public static final int menu_save_diagram=0x7f040010;
+        /**  Global resources 
+         */
+        public static final int save_button=0x7f040001;
+        public static final int view_add_method_attributes_button=0x7f040015;
+        /**  Add method view 
+         */
+        public static final int view_add_method_method_name=0x7f040013;
+        public static final int view_add_method_method_type=0x7f040014;
     }
 }
