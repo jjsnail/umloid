@@ -81,15 +81,16 @@ public class ClassPropertyActivity extends Activity{
 	
 	private OnClickListener onAttributesListner = new OnClickListener(){
 		public void onClick(View view) {
-			Intent intent = new Intent(view.getContext(), ClassAttributesActivity.class);						
-			startSubActivity(intent, ATTRIBUTES_PROPERTIES_ACTIVITY);			
+			Intent intent = new Intent(view.getContext(), ClassAttributesActivity.class);
+			
+			startActivityForResult(intent, ATTRIBUTES_PROPERTIES_ACTIVITY);
 		}
 	};
 	
 	private OnClickListener onMethodsListener = new OnClickListener(){
 		public void onClick(View view) {
 			Intent intent = new Intent(view.getContext(), MethodsActivity.class);			
-			startSubActivity(intent, METHODS_PROPERTIES_ACTIVITY);			
+			startActivityForResult(intent, METHODS_PROPERTIES_ACTIVITY);			
 		};
 	};
 	
@@ -106,8 +107,8 @@ public class ClassPropertyActivity extends Activity{
 	};
 	
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode,
-			String data, Bundle extras) {
-		super.onActivityResult(requestCode, resultCode, data, extras);		
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 }

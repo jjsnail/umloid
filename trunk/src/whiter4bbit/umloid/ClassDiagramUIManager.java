@@ -17,9 +17,9 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
-import android.view.Menu.Item;
 import android.widget.AbsoluteLayout;
 
 public class ClassDiagramUIManager extends DiagramUIManager implements ClassCallBackListener{
@@ -94,7 +94,7 @@ public class ClassDiagramUIManager extends DiagramUIManager implements ClassCall
 		if( state == State.ST_CONNECTION_PROPERTIES ){
 			Intent intent = new Intent(getView().getContext(), ConnectionPropertiesActivity.class);
 			UMLoidStorage.setConnection(connection);			
-			getActivity().startSubActivity(intent, CONNECTION_PROPERTIES_ACTIVITY);
+			getActivity().startActivityForResult(intent, CONNECTION_PROPERTIES_ACTIVITY);			
 			changeState(State.ST_NONE);
 		}
 		repaint();
@@ -115,28 +115,29 @@ public class ClassDiagramUIManager extends DiagramUIManager implements ClassCall
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+
+		menu.add(0, MENU_SAVE_DIAGRAM, 0, R.string.menu_save_diagram);
+		menu.add(0, MENU_CREATE_CLASS, 0, R.string.menu_create_class);
+		menu.add(0, MENU_DELETE_CLASS, 0, R.string.menu_delete_class);		
+		menu.add(0, MENU_CLASS_PROPERTIES, 0, R.string.menu_class_properties);	
+		menu.add(0, MENU_CONNECTION_PROPERTIES, 0, R.string.menu_connection_properties);
 		
-		menu.add(0, MENU_SAVE_DIAGRAM, R.string.menu_save_diagram);
-		menu.add(0, MENU_CREATE_CLASS, R.string.menu_create_class);
-		menu.add(0, MENU_DELETE_CLASS, R.string.menu_delete_class);		
-		menu.add(0, MENU_CLASS_PROPERTIES, R.string.menu_class_properties);	
-		menu.add(0, MENU_CONNECTION_PROPERTIES, R.string.menu_connection_properties);
+		SubMenu subMenu = menu.addSubMenu(0, MENU_CREATE_CONNECTION,0,  R.string.menu_create_connection);
 		
-		SubMenu subMenu = menu.addSubMenu(0, MENU_CREATE_CONNECTION, R.string.menu_create_connection);
-		
-		subMenu.add(0, MENU_CREATE_ASSOCIATION, R.string.menu_create_association);
-		subMenu.add(0, MENU_CREATE_COMPOSITION, R.string.menu_create_composition);
-		subMenu.add(0, MENU_CREATE_AGGREGATION, R.string.menu_create_aggregation);
-		subMenu.add(0, MENU_CREATE_GENERALIZATION, R.string.menu_create_generalization);
-		subMenu.add(0, MENU_CREATE_DEPENDENCY, R.string.menu_create_dependency);
+		subMenu.add(0, MENU_CREATE_ASSOCIATION, 0,  R.string.menu_create_association);
+		subMenu.add(0, MENU_CREATE_COMPOSITION, 0, R.string.menu_create_composition);
+		subMenu.add(0, MENU_CREATE_AGGREGATION, 0, R.string.menu_create_aggregation);
+		subMenu.add(0, MENU_CREATE_GENERALIZATION, 0, R.string.menu_create_generalization);
+		subMenu.add(0, MENU_CREATE_DEPENDENCY, 0, R.string.menu_create_dependency);
 		return true;		
 	}
 	
 	private long connectionType = ClassDiagramConnection.TYPE_AGGREGATION;
+
 	
 	@Override
-	public boolean onOptionsItemSelected(Item item) {
-		switch(item.getId()){
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
 		case MENU_CREATE_CLASS:
 			changeState(State.ST_CREATE_CLASS);			
 			break;			
@@ -159,7 +160,7 @@ public class ClassDiagramUIManager extends DiagramUIManager implements ClassCall
 			connectionType = ClassDiagramConnection.TYPE_COMPOSITION;
 			selectedClass1 = null;
 			selectedClass2 = null;
-			changeState(State.ST_CLASS_CONNECTION);			
+			changeState(State.ST_CLASS_CONNECTION);
 			break;
 		case MENU_CREATE_GENERALIZATION:
 			connectionType = ClassDiagramConnection.TYPE_GENERALIZATION;
@@ -209,7 +210,8 @@ public class ClassDiagramUIManager extends DiagramUIManager implements ClassCall
 			Intent i = new Intent(getView().getContext(), ClassPropertyActivity.class);			
 			i.putExtra(UMLoidHelper.CLASS_ID_KEY, classView.getCurrentClass().getId());
 			changeState(State.ST_NONE);
-			getActivity().startSubActivity(i, PROPERTIES);			
+			//getActivity().startSubActivity(i, PROPERTIES);
+			getActivity().startActivityForResult(i, PROPERTIES);
 		}
 		if( state == State.ST_CLASS_CONNECTION ){			
 			if( selectedClass1 == null ){
@@ -230,8 +232,9 @@ public class ClassDiagramUIManager extends DiagramUIManager implements ClassCall
 	}
 	
 	@Override
-	public void onActivityResult(int requestCode, int resultCode, String data, Bundle extras) {
-		super.onActivityResult(requestCode, resultCode, data, extras);
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);		
 		if(resultCode==Activity.RESULT_OK){
 			if(requestCode==CONNECTION_PROPERTIES_ACTIVITY){
 				ClassDiagramConnection connection = UMLoidStorage.getConnection();

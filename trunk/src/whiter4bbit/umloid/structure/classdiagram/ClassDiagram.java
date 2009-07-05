@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.List;
 
-import org.apache.commons.httpclient.methods.GetMethod;
 
 /**
  * @author whiter4bbit

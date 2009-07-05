@@ -87,7 +87,10 @@ public class AddMethodActivity extends Activity{
 			UMLoidStorage.setClassDiagramMethod(classDiagramMethod);
 			Bundle bundle = new Bundle();
 			bundle.putInt(UMLoidHelper.ACTION, action);
-			setResult(RESULT_OK,"MethodData", bundle);			
+			
+			Intent intent = new Intent();
+			intent.putExtras(bundle);
+			setResult(RESULT_OK, intent);			
 			finish();			
 		}
 	};
@@ -103,8 +106,9 @@ public class AddMethodActivity extends Activity{
 	
 	private OnClickListener attributesButtonClickListener = new OnClickListener(){
 		public void onClick(View view) {
-			Intent intent = new Intent(view.getContext(), MethodParametersActivity.class);					
-			startSubActivity(intent, PARAMETERS_ACTIVITY);
+			Intent intent = new Intent(view.getContext(), MethodParametersActivity.class);
+			
+			startActivityForResult(intent, PARAMETERS_ACTIVITY);			
 		}
 	};
 	

@@ -2,12 +2,13 @@ package whiter4bbit.umloid;
 
 import whiter4bbit.umloid.structure.classdiagram.Diagram;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
-import android.view.Menu.Item;
+import android.view.MenuItem;
 
 /**
  * @author whiter4bbit
@@ -27,7 +28,7 @@ public abstract class DiagramUIManager {
 	 * @param item пункт меню
 	 * @return результат создания меню
 	 */
-	public abstract boolean onOptionsItemSelected(Item item);
+	public abstract boolean onOptionsItemSelected(MenuItem item);	
 	
 	/**
 	 * обработка сообщения при отрисовке окна
@@ -59,8 +60,7 @@ public abstract class DiagramUIManager {
 	 * @param data название хранилища данных
 	 * @param extras данные полученый из активности
 	 */
-	public void onActivityResult(int requestCode, int resultCode,
-			String data, Bundle extras){		
+	public void onActivityResult(int requestCode, int resultCode, Intent data){		
 	}
 	
 	/**

@@ -8,9 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Menu.Item;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -53,7 +53,7 @@ public class UMLoid extends Activity {
 				intent.putExtra(UMLoidHelper.DIAGRAM_STATE, UMLoidHelper.DIAGRAM_STATE_LOAD);
 				intent.putExtra(UMLoidHelper.DIAGRAM_FILE, file);
 				
-				startSubActivity(intent, SHOW_DIAGRAM_ACTIVITY);
+				startActivityForResult(intent, SHOW_DIAGRAM_ACTIVITY);
 			}
 		}
 	};
@@ -92,14 +92,15 @@ public class UMLoid extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		menu.add(0, MENU_CREATE_DIAGRAM, R.string.menu_create_diagram);		
+		menu.add(0, MENU_CREATE_DIAGRAM, 0, R.string.menu_create_diagram);
 		return true;
 	}
 	
 	@Override
-	public boolean onOptionsItemSelected(Item item) {
+	public boolean onOptionsItemSelected(MenuItem item) {		
 		super.onOptionsItemSelected(item);
-		switch(item.getId()){
+		
+		switch(item.getItemId()){
 		case MENU_CREATE_DIAGRAM:
 			createDiagram();
 			break;
@@ -109,15 +110,17 @@ public class UMLoid extends Activity {
 	
 	private void createDiagram(){
 		Intent i = new Intent(this, CreateActivity.class);
-		startSubActivity(i, CREATE_DIAGRAM);		
+		
+		startActivityForResult(i, CREATE_DIAGRAM);
 	}
 	
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, String data, Bundle extras) {
-		super.onActivityResult(requestCode, resultCode, data, extras);
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 		
-		switch (requestCode) {
-		case CREATE_DIAGRAM:			
+		switch (requestCode) {		
+		case CREATE_DIAGRAM:	
+			Bundle extras = data.getExtras();
 			int diagramType = extras.getInt(UMLoidHelper.DIAGRAM_TYPE_KEY);
 			String diagramName = extras.getString(UMLoidHelper.DIAGRAM_NAME_KEY);
 			
@@ -126,9 +129,11 @@ public class UMLoid extends Activity {
 			i.putExtra(UMLoidHelper.DIAGRAM_TYPE_KEY, diagramType);
 			i.putExtra(UMLoidHelper.DIAGRAM_STATE, UMLoidHelper.DIAGRAM_STATE_CREATE);
 			
-			startSubActivity(i, SHOW_DIAGRAM_ACTIVITY);			
+			//startSubActivity(i, SHOW_DIAGRAM_ACTIVITY);
+			startActivityForResult(i, SHOW_DIAGRAM_ACTIVITY);
 			break;
 
 		}
-	}		
+	}	
+	
 }

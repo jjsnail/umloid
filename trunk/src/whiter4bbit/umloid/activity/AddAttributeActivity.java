@@ -6,6 +6,7 @@ import whiter4bbit.umloid.adapter.UMLoidSpinnerAdapter;
 import whiter4bbit.umloid.structure.classdiagram.ClassDiagramAttribute;
 import whiter4bbit.umloid.tool.UMLoidHelper;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -75,8 +76,12 @@ public class AddAttributeActivity extends Activity {
 			currentAttribute.setVisibilityScope(visibilityScope.getSelectedItemId());
 			UMLoidStorage.setClassDiagramAttribute(currentAttribute);
 			Bundle extras = new Bundle();
-			extras.putInt(UMLoidHelper.ACTION, action);			
-			setResult(RESULT_OK, "Attribute", extras);
+
+			extras.putInt(UMLoidHelper.ACTION, action);
+			
+			Intent intent = new Intent();
+			intent.putExtras(extras);
+			setResult(RESULT_OK, intent);			
 			finish();
 		}
 	};	
