@@ -7,6 +7,7 @@ import whiter4bbit.umloid.tool.UMLoidHelper;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,7 +40,9 @@ public class AddMethodParameterActivity extends Activity {
 				UMLoidStorage.setParameter(methodParameter);
 				Bundle bundle = new Bundle();
 				bundle.putInt(UMLoidHelper.ACTION, action);
-				setResult(RESULT_OK,"AddParameter", bundle);
+				Intent intent = new Intent();
+				intent.putExtras(bundle);
+				setResult(RESULT_OK, intent);
 				finish();
 			}
 		});

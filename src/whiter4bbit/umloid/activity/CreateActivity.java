@@ -5,6 +5,7 @@ import whiter4bbit.umloid.R.id;
 import whiter4bbit.umloid.R.layout;
 import whiter4bbit.umloid.tool.UMLoidHelper;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -50,8 +51,10 @@ public class CreateActivity extends Activity{
 			}
 			Bundle bundle = new Bundle();
 			bundle.putString(UMLoidHelper.DIAGRAM_NAME_KEY, diagramNameText.getText().toString());
-			bundle.putInt(UMLoidHelper.DIAGRAM_TYPE_KEY, selectedDiagramType);			
-			setResult(RESULT_OK, null, bundle);			
+			bundle.putInt(UMLoidHelper.DIAGRAM_TYPE_KEY, selectedDiagramType);						
+			Intent intent = new Intent();
+			intent.putExtras(bundle);
+			setResult(RESULT_OK, intent);
 			finish();
 		}
 	};

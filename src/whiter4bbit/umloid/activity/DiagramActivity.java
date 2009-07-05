@@ -12,11 +12,12 @@ import whiter4bbit.umloid.structure.classdiagram.Diagram;
 import whiter4bbit.umloid.tool.UMLoidHelper;
 import whiter4bbit.umloid.view.DiagramView;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.view.Menu.Item;
 import android.view.ViewGroup.LayoutParams;
 
 /**
@@ -56,8 +57,9 @@ public class DiagramActivity extends Activity{
 		diagramUIManager.onCreateOptionsMenu(menu);
 		return super.onCreateOptionsMenu(menu);
 	}
+	
 	@Override
-	public boolean onOptionsItemSelected(Item item) {
+	public boolean onOptionsItemSelected(MenuItem item) {
 		diagramUIManager.onOptionsItemSelected(item);
 		return super.onOptionsItemSelected(item);
 	}
@@ -89,15 +91,17 @@ public class DiagramActivity extends Activity{
 	}
 	
 	private void createDiagramView(){
-		diagramView = new DiagramView(this, diagramUIManager);		
-		addContentView(diagramView, new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		diagramView = new DiagramView(this, diagramUIManager);
+		//addContentView(diagramView, new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		setContentView(diagramView);
 		diagramUIManager.onCreate(this);
 	}
 	
+	
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode,
-			String data, Bundle extras) {
-		diagramUIManager.onActivityResult(requestCode, resultCode, data, extras);		
-		super.onActivityResult(requestCode, resultCode, data, extras);
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		diagramUIManager.onActivityResult(requestCode, resultCode, data);		
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 }

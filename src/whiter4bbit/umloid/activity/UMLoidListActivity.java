@@ -9,8 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu.Item;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -22,7 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
  * активность, отображающая список, содержащийся в экземпляре класса
  * с определенными аттрибутами
  */
-abstract public class UMLoidListActivity extends Activity{а
+abstract public class UMLoidListActivity extends Activity{
 	
 	private ListView mainListView = null;
 	
@@ -98,7 +98,9 @@ abstract public class UMLoidListActivity extends Activity{а
 												   getStorageClassInstance());
 				Intent intent = new Intent(v.getContext(), getModifyActivityClass());
 				intent.putExtra(UMLoidHelper.ACTION, UMLoidHelper.ACTION_MODIFY);
-				startSubActivity(intent, MODIFY_ACTIVITY);				
+				
+				
+				startActivityForResult(intent, MODIFY_ACTIVITY);				
 			}
 		}
 	};
@@ -121,19 +123,20 @@ abstract public class UMLoidListActivity extends Activity{а
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		menu.add(1, MENU_CREATE, getCreateItemText());
-		menu.add(1, MENU_DELETE, getDeleteItemText());		
+		menu.add(1, MENU_CREATE,0,  getCreateItemText());
+		menu.add(1, MENU_DELETE,0,  getDeleteItemText());		
 		return true;
 	}
 	
 	@Override
-	public boolean onMenuItemSelected(int featureId, Item item) {
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		super.onMenuItemSelected(featureId, item);
-		switch (item.getId()) {
+		switch (item.getItemId()) {
 		case MENU_CREATE:
 			Intent intent = new Intent(this, getModifyActivityClass());
-			intent.putExtra(UMLoidHelper.ACTION, UMLoidHelper.ACTION_CREATE);			
-			startSubActivity(intent, CREATE_ACTIVITY);	
+			intent.putExtra(UMLoidHelper.ACTION, UMLoidHelper.ACTION_CREATE);
+			
+			startActivityForResult(intent, CREATE_ACTIVITY);	
 			break;
 		case MENU_DELETE:
 			Object selectedEntity = UMLoidReflectionTools.invokeMethod("remove"+getEntityName(), 
@@ -146,11 +149,13 @@ abstract public class UMLoidListActivity extends Activity{а
 		return true;
 	}
 	
+		
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode,
-			String data, Bundle extras) {	
-		super.onActivityResult(requestCode, resultCode, data, extras);
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
 		if( resultCode == RESULT_OK ){
+			Bundle extras = data.getExtras();
 			if( extras.getInt(UMLoidHelper.ACTION) == UMLoidHelper.ACTION_CREATE ){
 				Object createdEntity = UMLoidReflectionTools.invokeMethod("get"+getEntityNameInStorage(), 
 						   												  new Object[]{}, 
